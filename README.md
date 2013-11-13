@@ -1,1 +1,1 @@
-This is a small project with some benchmarks for Oboe.js
+A small project with some benchmarks for Oboe.js
