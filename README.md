@@ -1,13 +1,13 @@
 A small project with some benchmarks for Oboe.js
 
-To run on Node:
+To run on Node (checkout git repo first):
 
 ```bash
-$ npm install
-$ node index.js
+$ npm install   # install dependencies
+$ node index.js # run benchmark
 ```
 
-To run in the browser:
+To run in the browser (checkout git repo first):
 
 ```bash
 bower install
