@@ -20,6 +20,6 @@ $ bower install
 
 $ sudo npm install -g http-server
 $ http-server
-
-# open browser at http://localhost:8080/index.html
 ```
+
+Now open the browser at [http://localhost:8080](http://localhost:8080)
