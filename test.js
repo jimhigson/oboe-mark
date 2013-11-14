@@ -4,7 +4,7 @@ var progressAtOnce = 1024; // fire progress with this many bytes
 var numberOfRuns = 40;
 var numberOfRecords = 100;            
 var testName = numberOfRuns + ' big downloads';
-var profile = true;        
+var profile = !!console.profile;        
 
 function go(oboe){
 
@@ -38,7 +38,7 @@ function go(oboe){
            
       console.log('will start testing in', initialWait, '...');
             
-      window.setTimeout( function() {
+      setTimeout( function() {
       
          profile && console.profile(testName);
          console.time(testName);
