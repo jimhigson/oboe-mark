@@ -21,10 +21,10 @@ function go(oboe, print, collectProfile){
             "guid": "046447ee-da78-478c-b518-b612111942a5",
             "picture": "http://placehold.it/32x32",
             "age": i,
-            "name": "Payton Murphy",
-            "company": "Robotomic",
-            "phone": "806-587-2379",
-            "email": "payton@robotomic.com"               
+            "name": "Payton Murphy" + i,
+            "company": "Robotomic" + i,
+            "phone": "806-587-2379" + i,
+            "email": "payton@robotomic.com" + i
          });
       }
       return JSON.stringify(container);
