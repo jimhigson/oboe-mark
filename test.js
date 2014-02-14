@@ -2,11 +2,9 @@
 var initialWait = 500;
 var progressAtOnce = 1024; // fire progress with this many bytes      
 var numberOfRuns = 40;
-var numberOfRecords = 100;            
-var testName = numberOfRuns + ' big downloads';
-var profile = !!console.profile;        
+var numberOfRecords = 100;
 
-function go(oboe){
+function go(oboe, print, collectProfile){
 
    function generateTestJson(){
    
@@ -32,17 +30,19 @@ function go(oboe){
       return JSON.stringify(container);
    }
    
-   runTest( generateTestJson() );         
-                           
-   function runTest(content) {
-           
-      console.log('will start testing in', initialWait, '...');
-            
-      setTimeout( function() {
+   var startTime = Date.now();
+   collectProfile && console.profile('oboe-mark');
       
-         profile && console.profile(testName);
-         console.time(testName);
-            
+   runTest( generateTestJson(), function(){
+      var timeTaken = Date.now() - startTime;
+      print(numberOfRuns, 'runs of', numberOfRecords, 'records took', timeTaken, 'ms');
+      collectProfile && console.profileEnd('oboe-mark')
+   });         
+                           
+   function runTest(content, doneCallback) {
+                       
+      setTimeout( function() {
+                  
          perform(numberOfRuns);
       }, initialWait );         
    
@@ -70,13 +70,12 @@ function go(oboe){
                }
                 
                if( times == 0 ) {
-                  profile && console.profileEnd(testName);            
-                  console.timeEnd(testName);
+                  doneCallback();
                } else {
                   perform(times-1);
                }            
             }).fail(function(e){
-               console.log('there was a failure' + JSON.stringify(e));
+               print('there was a failure' + JSON.stringify(e));
             });
                         
          // pass in a drip at a time            
@@ -90,6 +89,7 @@ function go(oboe){
    }
 }
 
+// if we are in Node export the go method
 if( typeof exports !== 'undefined' ) {
    module.exports = go;
 }
